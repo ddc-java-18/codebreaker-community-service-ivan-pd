@@ -34,3 +34,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+*local.properties
+*local.yaml
+*local.yml
+db/
