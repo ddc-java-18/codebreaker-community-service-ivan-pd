@@ -32,10 +32,10 @@ public class User {
   private UUID externalKey;
 
   @Column(nullable = false, updatable = true, unique = true)
-  private String display_name;
+  private String displayName;
 
   @Column(nullable = false, updatable = false, unique = true)
-  private String oauth_key;
+  private String oauthKey;
 
   @Column(nullable = false, updatable = false)
   @CreationTimestamp
@@ -61,20 +61,20 @@ public class User {
     return externalKey;
   }
 
-  public String getDisplay_name() {
-    return display_name;
+  public String getDisplayName() {
+    return displayName;
   }
 
-  public void setDisplay_name(String display_name) {
-    this.display_name = display_name;
+  public void setDisplayName(String display_name) {
+    this.displayName = display_name;
   }
 
-  public String getOauth_key() {
-    return oauth_key;
+  public String getOauthKey() {
+    return oauthKey;
   }
 
-  public void setOauth_key(String oauth_key) {
-    this.oauth_key = oauth_key;
+  public void setOauthKey(String oauth_key) {
+    this.oauthKey = oauth_key;
   }
 
   public Instant getCreated() {

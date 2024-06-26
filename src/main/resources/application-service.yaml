@@ -6,7 +6,6 @@ server:
   servlet:
     context-path: /codebreaker-community
 
-
 spring:
   application:
     name: service
