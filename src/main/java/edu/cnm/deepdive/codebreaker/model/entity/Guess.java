@@ -23,7 +23,7 @@ public class Guess {
   private long id;
 
   @Column(nullable = false, updatable = false, unique = true)
-  private UUID external_key;
+  private UUID externalKey;
 
   @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "game_id", nullable = false, updatable = false)
@@ -48,7 +48,11 @@ public class Guess {
   }
 
   public UUID getExternal_key() {
-    return external_key;
+    return externalKey;
+  }
+
+  public void setExternalKey(UUID externalKey) {
+    this.externalKey = externalKey;
   }
 
   public Game getGame() {
@@ -92,7 +96,7 @@ public class Guess {
   }
 
   void generateFieldValues() {
-    external_key = UUID.randomUUID();
+    externalKey = UUID.randomUUID();
   }
 
 }
