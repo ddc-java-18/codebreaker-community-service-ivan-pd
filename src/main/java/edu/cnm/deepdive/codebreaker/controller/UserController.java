@@ -24,6 +24,7 @@ public class UserController {
     return userService.getCurrentUser();
   }
 
+  // TODO: 7/1/24 Add method to receive and handle an update request.
 
 
 
