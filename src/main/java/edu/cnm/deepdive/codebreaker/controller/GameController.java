@@ -4,9 +4,12 @@ import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import edu.cnm.deepdive.codebreaker.service.AbstractGameService;
 import edu.cnm.deepdive.codebreaker.service.AbstractUserService;
 import jakarta.validation.Valid;
+import java.net.URI;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +26,6 @@ public class GameController {
   private final AbstractGameService gameService;
   private final AbstractUserService userService;
 
-  // TODO: 7/1/24 Declare and initialize in the constructor any dependencies
   @Autowired
   public GameController(AbstractGameService gameService, AbstractUserService userService) {
     this.gameService = gameService;
@@ -32,9 +34,12 @@ public class GameController {
 
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Game post(@RequestBody @Valid Game game) {
-    // TODO: 7/1/24 Return response with HTTP status 201 and location header.
-    return gameService.startGame(game, userService.getCurrentUser());
+  public ResponseEntity<Game> post(@RequestBody @Valid Game game) {
+    Game newGame = gameService.startGame(game, userService.getCurrentUser());
+    URI location = WebMvcLinkBuilder.linkTo(
+        WebMvcLinkBuilder.methodOn(getClass()).get(newGame.getExternalKey()))
+        .toUri();
+    return ResponseEntity.created(location).body(newGame);
   }
 
   @GetMapping(path = "/{key}", produces = MediaType.APPLICATION_JSON_VALUE) // TODO: 7/1/24 Add Regex for key.
