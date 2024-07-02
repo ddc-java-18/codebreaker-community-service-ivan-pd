@@ -66,8 +66,8 @@ public class Game {
   private int poolSize;
 
   @Column(nullable = false, updatable = false)
-  @Min(MIN_CODE_LENGTH)
-  @Max(MAX_CODE_LENGTH)
+  @Min(value = MIN_CODE_LENGTH, message = "Code length must be at least " + MIN_CODE_LENGTH)
+  @Max(value = MAX_CODE_LENGTH, message = "Code length must not exceed" + MAX_CODE_LENGTH)
   private int codeLength;
 
   @Column(nullable = false, updatable = false)

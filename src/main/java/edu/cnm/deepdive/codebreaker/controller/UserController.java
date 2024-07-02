@@ -26,8 +26,4 @@ public class UserController {
 
   // TODO: 7/1/24 Add method to receive and handle an update request.
 
-
-
-
-
 }
